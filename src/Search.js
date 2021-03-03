@@ -11,7 +11,10 @@ const Search = () => {
 	const [recipes, setRecipes] = useState([]);
 	const [search, setSearch] = useState("");
 	const [query, setQuery] = useState("chicken");
+	const [favRecipe, setFavRecipe] = useState([]);
 
+
+		
 	useEffect( async () =>{
 		getRecipes();			
 	}, [query]);
@@ -33,22 +36,32 @@ const Search = () => {
 		setSearch('');
 	}
 
+	const saveRecipe = async (resep) =>{
+		setFavRecipe(favRecipe.concat(resep));
+		console.log(resep);
+		console.log(favRecipe.length);
+		console.log(favRecipe);
+	};
+
 
 		return(
 			<div className = "search">
 				<form onSubmit={getSearch} className="search-form">
 					<input className = "search-bar" type='text' value={search} onChange={updateSearch} />
-					<button className = 'search-button' type='submit'>Search</button>
+					<button className = 'search-button' type='submit'>Search for recipe!</button>
 				</form>
 			<div className = "recipes">
 				{recipes.map(recipe => (
 					<Recipe 
+					saveRecipe={saveRecipe}
+					singRecipe={recipe.recipe}
 					key={recipe.recipe.label}
 					title={recipe.recipe.label} 
 					calories={recipe.recipe.calories}
 					image={recipe.recipe.image}
 					ingredients={recipe.recipe.ingredients}
 					url={recipe.recipe.url}
+					bookmarked={recipe.bookmarked}
 					/>
 				))}
 				;

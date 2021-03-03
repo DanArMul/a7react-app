@@ -7,6 +7,7 @@ import Detail from './Detail.js';
 import Add from './Add.js';
 import Recipe from './Recipe.js';
 import Search from './Search.js';
+//import Favorites from './Favorites.js'; //un-needed
 import { BrowserRouter, Route} from 'react-router-dom';
 
 ReactDOM.render(
